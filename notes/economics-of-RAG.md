@@ -1,0 +1,12 @@
+### Economics of RAG
+- **Ingestion-time costs:** 
+	- Compute cost for parsing, cleaning, chunking, embedding, indexing, metadata extraction, and backfills. 
+	- Embedding costs if we are using 3 rd party embeddings
+	- DB Costs for embedding and indexing. 
+	- For static corpora this is mostly upfront cost; for high-churn corpora it becomes a recurring operational expense.
+- **Query-time token costs:** retrieved chunks increase prompt size, so top-k, chunk size, overlap, and citation format directly affect model spend. citations increase output accuracy at the cost of more output tokens and more time to complete generation time.
+- **Latency:** retrieval, filtering, reranking, and context assembly add extra steps before generation, which usually increases TTFT relative to direct prompting.
+- **Throughput:** larger prompts and additional retrieval stages reduce how many queries a system can serve per unit time, especially in high-QPS (queries per second) workloads.
+- **Model costs:** the embedder, retriever, reranker, and generator each have separate quality/cost tradeoffs. A better reranker may let you send fewer tokens downstream but add latency and costs at retrieval time, while a cheaper embedder may lower cost and latency but hurt recall of the application.
+- **Infrastructure costs:** vector databases, lexical indexes, caches, storage, observability, and reprocessing pipelines all add cost beyond model APIs.
+- **Evaluation and maintenance costs:** relevance tuning, offline evals, tracing, and failure analysis are ongoing work. Operational complexity is part of the economics, not just the cloud bill.

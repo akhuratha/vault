@@ -1,0 +1,9 @@
+- Not really an alternative to RAG, but a more flexible form of it. The model can decide when to search, how to decompose a query, which tool or retriever to use, and whether to retrieve again.
+- Pros: 
+	- Can recover from a weak first retrieval
+	- Better for ambiguous or multi-hop questions that need further clarification from user
+	- Can pull from multiple tools or knowledge sources as needed. For example, it can combine a vector search over internal docs, a SQL lookup for account state, and a ticketing system API for recent incidents.
+	- Can validate or cross-check intermediate answers. For example, if the first retrieval says a customer is eligible for a feature, the agent can verify that against entitlement data or the latest policy doc before answering.
+- Cons: Higher final TTFT, higher latency, and higher cost. It is also less predictable, harder to debug and evaluate, and introduces extra failure modes such as tool loops, over-retrieval, and prompt/tool injection risk.
+- Use Agentic RAG when: the query needs multiple retrieval steps, spans several data sources, requires planning or decomposition, or benefits from iterative verification.
+- Use normal RAG when: one retrieve-then-read pass is usually enough, the workload is high-volume and latency-sensitive, and you want simpler infrastructure with more predictable behavior.

@@ -1,0 +1,26 @@
+**Fine-tuning**
+	- If your main goal is to give the LLM current, latest, or query-specific knowledge, fine-tuning is usually not the right alternative to RAG. RAG/tools are better because they fetch facts at answer time.
+	- Fine-tuning is mostly about teaching the model how to behave on a task, not about giving it a large, frequently changing knowledge base.
+	- Fine-tuning stores patterns in model weights. That can help the model internalise stable domain language, small closed sets of knowledge, or recurring decision rules, but it is a poor fit for fast-changing facts.
+	- By behaviour, we mean things like: producing a specific output schema, choosing the right label in a classifier, extracting fields consistently, following a house style or tone, calling tools in the right format, or refusing in the right situations.
+	- So if you do not use RAG/tools, the model only knows:
+		- What was already in the base model.
+		- What got baked into the fine-tune from the training data.
+		- It does not automatically know newly added or updated facts after training.
+	- Use fine-tuning when:
+		- You have many high-quality labeled examples for a repetitive task.
+		- You need more consistent outputs than prompt engineering alone can give.
+		- The task is about transformation or decision-making more than factual lookup.
+		- The knowledge is stable and narrow, or facts can still come from RAG/tools while the fine-tune controls the behaviour.
+	- Examples:
+		- Support ticket classification into internal queues.
+		- Extracting invoice, claim, or contract fields into strict JSON.
+		- Rewriting drafts into a company's required support tone.
+		- Teaching a model how and when to call internal tools in an agent workflow.
+		- In a medical support assistant, use RAG for the latest treatment guidelines, but fine-tune the model to always answer in the hospital's required structure and escalation style.
+	- Cons:
+		- Compute- and data-intensive.
+		- Can reduce generality if the training data is narrow or noisy.
+		- Not a good way to keep changing facts current; updated knowledge usually means retraining.
+		- Base models keep improving, so teams often need to repeat the fine-tuning work on newer models.
+	- Continued pre-training / domain adaptation: Further train the base model on a large specialised corpus. Use this when you have a lot of domain text and need the model to internalise vocabulary, style, background knowledge, and recurring reasoning patterns. Even here, teams often still add RAG for freshness and precise citation. This is expensive and usually only worth it at larger scale.
