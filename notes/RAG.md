@@ -1,5 +1,5 @@
 ### Why use RAG
-Give an LLM access to knowledge that it was not trained on. 
+Give an [[LLM]] access to knowledge that it was not trained on. 
 
 ### Alternatives to RAG
 
@@ -15,7 +15,7 @@ Whether the cost of RAG is worth it or not depends on how
 - how often it is queried,
 - how much retrieval improves answer quality.
 
-#### [[llm-fine-tuning]]
+#### [[LLM-fine-tuning]]
 #### **Long Context Prompt**
 - Pros: Simplest setup, low orchestration overhead, and good latency when the document set is small.
 - Cons: Only works when the material fits comfortably in context, and both cost and latency rise as prompts grow.
