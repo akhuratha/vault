@@ -1,0 +1,6 @@
+- This repository is an Obsidian-based PKMS vault. 
+- Use Obsidian-flavored Markdown.
+- Prefer internal links with `[[Wiki Links]]` for notes and folders.
+- Use tags like `#tag/subtag` sparingly; prefer links for concepts.
+- Use YAML frontmatter when metadata is helpful (e.g., `type`, `status`, `created`, `source`).
+- Use \t for indentation
